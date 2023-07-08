@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 150);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

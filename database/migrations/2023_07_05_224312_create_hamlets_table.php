@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
+        // CASERÍOS
         Schema::create('hamlets', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 150);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+        // CENTROS ESCOLARES
         Schema::create('school_centers', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 250);
+            $table->string('infraestructure_code', 250);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+
+            // Llave Foranea a Alumno
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students');
+
+            $table->date('date'); // Fecha
+            $table->time('time'); // Hora
             $table->timestamps();
         });
     }

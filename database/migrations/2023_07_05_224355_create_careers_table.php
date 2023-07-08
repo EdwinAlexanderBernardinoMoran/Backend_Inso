@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+
+        // CARRERAS DE PROFESOR
         Schema::create('careers', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 60);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('nationalities', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 250);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

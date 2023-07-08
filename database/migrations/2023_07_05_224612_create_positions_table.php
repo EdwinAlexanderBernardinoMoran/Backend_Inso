@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+
+        // CARGO DE PROFESOR
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
