@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSpecialtyRequest;
+use App\Http\Resources\V1\Resources\SpecialtyResource;
 use App\Models\Specialty;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class SpecialtyController extends Controller
 {
@@ -15,18 +17,23 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        //
+        return SpecialtyResource::collection(Specialty::latest()->paginate());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreSpecialtyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSpecialtyRequest $request)
     {
-        //
+        Specialty::create($request->validated());
+
+        return response()->json([
+            'message' => 'Especialidad Creada'
+        ], 201);
+
     }
 
     /**
@@ -37,7 +44,7 @@ class SpecialtyController extends Controller
      */
     public function show(Specialty $specialty)
     {
-        //
+        return new SpecialtyResource($specialty);
     }
 
     /**
@@ -47,7 +54,7 @@ class SpecialtyController extends Controller
      * @param  \App\Models\Specialty  $specialty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Specialty $specialty)
+    public function update(StoreSpecialtyRequest $request, Specialty $specialty)
     {
         //
     }
@@ -60,6 +67,10 @@ class SpecialtyController extends Controller
      */
     public function destroy(Specialty $specialty)
     {
-        //
+        $specialty->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
