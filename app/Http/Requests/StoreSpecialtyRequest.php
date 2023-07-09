@@ -23,6 +23,7 @@ class StoreSpecialtyRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => ['required'],
             'status' => ['required']

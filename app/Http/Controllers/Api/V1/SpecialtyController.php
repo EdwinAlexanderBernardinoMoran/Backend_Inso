@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSpecialtyRequest;
+use App\Http\Resources\V1\Collection\SpecialtyCollection;
 use App\Http\Resources\V1\Resources\SpecialtyResource;
 use App\Models\Specialty;
-// use Illuminate\Http\Request;
 
 class SpecialtyController extends Controller
 {
@@ -17,7 +17,8 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        return SpecialtyResource::collection(Specialty::latest()->paginate());
+        // return SpecialtyResource::collection(Specialty::latest()->paginate());
+        return new SpecialtyCollection(Specialty::latest()->paginate());
     }
 
     /**
@@ -56,7 +57,11 @@ class SpecialtyController extends Controller
      */
     public function update(StoreSpecialtyRequest $request, Specialty $specialty)
     {
-        //
+        $specialty->update($request->validated());
+
+        return response()->json([
+            'message' => 'Especialidad Actualizada'
+        ], 200);
     }
 
     /**
