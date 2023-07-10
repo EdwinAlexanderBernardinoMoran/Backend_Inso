@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDepartmentRequest;
+use App\Http\Resources\V1\Collection\DepartmentCollection;
+use App\Http\Resources\V1\Resources\DepartmentResource;
 use App\Models\Department;
-use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
@@ -15,7 +17,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        return new DepartmentCollection(Department::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDepartmentRequest $request)
     {
-        //
+        Department::create($request->validated());
+
+        return response()->json([
+            'message' => 'Departamento Creado!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        return new DepartmentResource($department);
     }
 
     /**
@@ -47,9 +53,13 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(StoreDepartmentRequest $request, Department $department)
     {
-        //
+        $department->update($request->validated());
+
+        return response()->json([
+            'message' => 'Departamento Actualizado!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
