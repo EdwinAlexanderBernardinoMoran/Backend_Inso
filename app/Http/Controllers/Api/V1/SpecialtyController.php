@@ -60,7 +60,7 @@ class SpecialtyController extends Controller
         $specialty->update($request->validated());
 
         return response()->json([
-            'message' => 'Especialidad Actualizada'
+            'message' => 'Especialidad Actualizada!'
         ], 200);
     }
 

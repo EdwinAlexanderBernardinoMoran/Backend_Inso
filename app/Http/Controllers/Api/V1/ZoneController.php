@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreZoneRequest;
+use App\Http\Resources\V1\Collection\ZoneCollection;
+use App\Http\Resources\V1\Resources\ZoneResource;
 use App\Models\Zone;
-use Illuminate\Http\Request;
 
 class ZoneController extends Controller
 {
@@ -15,7 +17,7 @@ class ZoneController extends Controller
      */
     public function index()
     {
-        //
+        return new ZoneCollection(Zone::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class ZoneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreZoneRequest $request)
     {
-        //
+        Zone::create($request->validated());
+
+        return response()->json([
+            'message' => 'Zona Creada!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class ZoneController extends Controller
      */
     public function show(Zone $zone)
     {
-        //
+        return new ZoneResource($zone);
     }
 
     /**
@@ -47,9 +53,13 @@ class ZoneController extends Controller
      * @param  \App\Models\Zone  $zone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Zone $zone)
+    public function update(StoreZoneRequest $request, Zone $zone)
     {
-        //
+        $zone->update($request->validated());
+
+        return response()->json([
+            'message' => 'Zona Actualizada!'
+        ]);
     }
 
     /**
@@ -60,6 +70,10 @@ class ZoneController extends Controller
      */
     public function destroy(Zone $zone)
     {
-        //
+        $zone->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
