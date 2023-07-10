@@ -45,7 +45,7 @@ Route::apiResource('v1/hamlet', HamletController::class);
 Route::apiResource('v1/position', PositionController::class);
 Route::apiResource('v1/registration', RegistrationController::class);
 Route::apiResource('v1/schoolcenter', SchoolCenterController::class);
-Route::apiResource('v1/section', SectionController::class);
+// Route::apiResource('v1/section', SectionController::class);
 // Route::apiResource('v1/specialty', SpecialtyController::class);
 Route::apiResource('v1/student', StudentController::class);
 Route::apiResource('v1/teacher', TeacherController::class);

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSectionRequest;
+use App\Http\Resources\V1\Collection\SectionCollection;
+use App\Http\Resources\V1\Resources\SectionResource;
 use App\Models\Section;
-use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
@@ -15,7 +17,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        return new SectionCollection(Section::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class SectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSectionRequest $request)
     {
-        //
+        Section::create($request->validated());
+
+        return response()->json([
+            'message' => 'Seccion Creada!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        //
+        return new SectionResource($section);
     }
 
     /**
@@ -47,9 +53,13 @@ class SectionController extends Controller
      * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update(StoreSectionRequest $request, Section $section)
     {
-        //
+        $section->update($request->validated());
+
+        return response()->json([
+            'message' => 'Seccion Actualizada!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class SectionController extends Controller
      */
     public function destroy(Section $section)
     {
-        //
+        $section->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
