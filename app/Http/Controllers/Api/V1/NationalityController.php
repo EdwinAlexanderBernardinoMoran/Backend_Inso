@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNationalityRequest;
+use App\Http\Resources\V1\Collection\NationalityCollection;
+use App\Http\Resources\V1\Resources\NationalityResource;
 use App\Models\Nationality;
-use Illuminate\Http\Request;
 
 class NationalityController extends Controller
 {
@@ -15,7 +17,7 @@ class NationalityController extends Controller
      */
     public function index()
     {
-        //
+        return new NationalityCollection(Nationality::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class NationalityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNationalityRequest $request)
     {
-        //
+        Nationality::create($request->validated());
+
+        return response()->json([
+            'message' => 'Nacionalidad Creada'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class NationalityController extends Controller
      */
     public function show(Nationality $nationality)
     {
-        //
+        return new NationalityResource($nationality);
     }
 
     /**
@@ -47,9 +53,13 @@ class NationalityController extends Controller
      * @param  \App\Models\Nationality  $nationality
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nationality $nationality)
+    public function update(StoreNationalityRequest $request, Nationality $nationality)
     {
-        //
+        $nationality->update($request->validated());
+
+        return response()->json([
+            'message' => 'Nacionalidad Actualizada!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class NationalityController extends Controller
      */
     public function destroy(Nationality $nationality)
     {
-        //
+        $nationality->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
