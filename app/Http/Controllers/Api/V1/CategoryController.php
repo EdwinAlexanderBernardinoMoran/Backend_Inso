@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Resources\V1\Collection\CategoryCollection;
+use App\Http\Resources\V1\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return new CategoryCollection(Category::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create($request->validated());
+
+        return response()->json([
+            'message' => 'Categoria Creada!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return new CategoryResource($category);
     }
 
     /**
@@ -47,9 +53,13 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+
+        return response()->json([
+            'message' => 'Categoria Actualida!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
