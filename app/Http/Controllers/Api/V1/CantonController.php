@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCantonRequest;
+use App\Http\Resources\V1\Collection\CantonCollection;
+use App\Http\Resources\V1\Resources\CantonResource;
 use App\Models\Canton;
-use Illuminate\Http\Request;
 
 class CantonController extends Controller
 {
@@ -15,7 +17,7 @@ class CantonController extends Controller
      */
     public function index()
     {
-        //
+        return new CantonCollection(Canton::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class CantonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCantonRequest $request)
     {
-        //
+        Canton::create($request->validated());
+
+        return response()->json([
+            'message' => 'Canton Creado!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class CantonController extends Controller
      */
     public function show(Canton $canton)
     {
-        //
+        return new CantonResource($canton);
     }
 
     /**
@@ -47,9 +53,13 @@ class CantonController extends Controller
      * @param  \App\Models\Canton  $canton
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Canton $canton)
+    public function update(StoreCantonRequest $request, Canton $canton)
     {
-        //
+        $canton->update($request->validated());
+
+        return response()->json([
+            'message' => 'Canton Actualizado!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class CantonController extends Controller
      */
     public function destroy(Canton $canton)
     {
-        //
+        $canton->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
