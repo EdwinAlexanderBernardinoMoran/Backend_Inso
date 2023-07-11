@@ -35,14 +35,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::apiResource('v1/attendance', AttendanceController::class);
-Route::apiResource('v1/canton', CantonController::class);
+// Route::apiResource('v1/canton', CantonController::class);
 Route::apiResource('v1/career', CareerController::class);
 // Route::apiResource('v1/category', CategoryController::class);
 // Route::apiResource('v1/department', DepartmentController::class);
 Route::apiResource('v1/hamlet', HamletController::class);
 // Route::apiResource('v1/municipality', MunicipalityController::class);
 // Route::apiResource('v1/nationality', NationalityController::class);
-Route::apiResource('v1/position', PositionController::class);
+// Route::apiResource('v1/position', PositionController::class);
 Route::apiResource('v1/registration', RegistrationController::class);
 Route::apiResource('v1/schoolcenter', SchoolCenterController::class);
 // Route::apiResource('v1/section', SectionController::class);
