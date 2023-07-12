@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreHamletRequest;
+use App\Http\Resources\V1\Collection\HamletCollection;
+use App\Http\Resources\V1\Resources\HamletResource;
 use App\Models\Hamlet;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,7 @@ class HamletController extends Controller
      */
     public function index()
     {
-        //
+        return new HamletCollection(Hamlet::latest()->paginate());
     }
 
     /**
@@ -24,9 +27,13 @@ class HamletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHamletRequest $request)
     {
-        //
+        Hamlet::create($request->validated());
+
+        return response()->json([
+            'message' => 'Caserío Creado!'
+        ], 201);
     }
 
     /**
@@ -37,7 +44,7 @@ class HamletController extends Controller
      */
     public function show(Hamlet $hamlet)
     {
-        //
+        return new HamletResource($hamlet);
     }
 
     /**
@@ -47,9 +54,13 @@ class HamletController extends Controller
      * @param  \App\Models\Hamlet  $hamlet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hamlet $hamlet)
+    public function update(StoreHamletRequest $request, Hamlet $hamlet)
     {
-        //
+        $hamlet->update($request->validated());
+
+        return response()->json([
+            'message' => 'Caserío Actualizado!'
+        ], 200);
     }
 
     /**
@@ -60,6 +71,10 @@ class HamletController extends Controller
      */
     public function destroy(Hamlet $hamlet)
     {
-        //
+        $hamlet->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
