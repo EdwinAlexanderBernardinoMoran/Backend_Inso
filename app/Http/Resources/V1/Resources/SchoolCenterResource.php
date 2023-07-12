@@ -14,6 +14,12 @@ class SchoolCenterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'infraestructure_code' => $this->infraestructure_code,
+            'status' => $this->status,
+            'created_at' => $this->published_at
+        ];
     }
 }

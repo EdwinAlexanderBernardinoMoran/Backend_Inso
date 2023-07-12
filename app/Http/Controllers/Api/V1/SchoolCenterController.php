@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSchoolCenterRequest;
+use App\Http\Resources\V1\Collection\SchoolCenterCollection;
+use App\Http\Resources\V1\Resources\SchoolCenterResource;
 use App\Models\SchoolCenter;
-use Illuminate\Http\Request;
 
 class SchoolCenterController extends Controller
 {
@@ -15,7 +17,7 @@ class SchoolCenterController extends Controller
      */
     public function index()
     {
-        //
+        return new SchoolCenterCollection(SchoolCenter::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class SchoolCenterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSchoolCenterRequest $request)
     {
-        //
+        SchoolCenter::create($request->validated());
+
+        return response()->json([
+            'message' => 'Centro Escolar Creado!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class SchoolCenterController extends Controller
      */
     public function show(SchoolCenter $schoolCenter)
     {
-        //
+        return new SchoolCenterResource($schoolCenter);
     }
 
     /**
@@ -47,9 +53,13 @@ class SchoolCenterController extends Controller
      * @param  \App\Models\SchoolCenter  $schoolCenter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SchoolCenter $schoolCenter)
+    public function update(StoreSchoolCenterRequest $request, SchoolCenter $schoolCenter)
     {
-        //
+        $schoolCenter->update($request->validated());
+
+        return response()->json([
+            'message' => 'Centro Escolar Actualizado'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class SchoolCenterController extends Controller
      */
     public function destroy(SchoolCenter $schoolCenter)
     {
-        //
+        $schoolCenter->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
