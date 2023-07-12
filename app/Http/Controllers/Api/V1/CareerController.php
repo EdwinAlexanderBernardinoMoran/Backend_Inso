@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCareerRequest;
+use App\Http\Resources\V1\Collection\CareerCollection;
+use App\Http\Resources\V1\Resources\CareerResource;
 use App\Models\Career;
-use Illuminate\Http\Request;
 
 class CareerController extends Controller
 {
@@ -15,7 +17,7 @@ class CareerController extends Controller
      */
     public function index()
     {
-        //
+        return new CareerCollection(Career::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class CareerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCareerRequest $request)
     {
-        //
+        Career::create($request->validated());
+
+        return response()->json([
+            'message' => 'Cargo Creado!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class CareerController extends Controller
      */
     public function show(Career $career)
     {
-        //
+        return new CareerResource($career);
     }
 
     /**
@@ -47,9 +53,13 @@ class CareerController extends Controller
      * @param  \App\Models\Career  $career
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Career $career)
+    public function update(StoreCareerRequest $request, Career $career)
     {
-        //
+        $career->update($request->validated());
+
+        return response()->json([
+            'message' => 'Cargo Actualizado!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class CareerController extends Controller
      */
     public function destroy(Career $career)
     {
-        //
+        $career->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }

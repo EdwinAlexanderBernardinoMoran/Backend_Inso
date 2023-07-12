@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('v1/attendance', AttendanceController::class);
 // Route::apiResource('v1/canton', CantonController::class);
-Route::apiResource('v1/career', CareerController::class);
+// Route::apiResource('v1/career', CareerController::class);
 // Route::apiResource('v1/category', CategoryController::class);
 // Route::apiResource('v1/department', DepartmentController::class);
 Route::apiResource('v1/hamlet', HamletController::class);
