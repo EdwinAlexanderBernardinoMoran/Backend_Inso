@@ -48,5 +48,5 @@ Route::apiResource('v1/registration', RegistrationController::class);
 // Route::apiResource('v1/section', SectionController::class);
 // Route::apiResource('v1/specialty', SpecialtyController::class);
 // Route::apiResource('v1/student', StudentController::class);
-Route::apiResource('v1/teacher', TeacherController::class);
+// Route::apiResource('v1/teacher', TeacherController::class);
 // Route::apiResource('v1/zone', ZoneController::class);

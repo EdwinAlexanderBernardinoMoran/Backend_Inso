@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTeacherRequest;
+use App\Http\Resources\V1\Collection\TeacherCollection;
+use App\Http\Resources\V1\Resources\TeacherResource;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        return new TeacherCollection(Teacher::latest()->paginate());
     }
 
     /**
@@ -24,9 +27,13 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeacherRequest $request)
     {
-        //
+        Teacher::create($request->validated());
+
+        return response()->json([
+            'message' => 'Profesor Creado Exitosamente!'
+        ], 201);
     }
 
     /**
@@ -37,7 +44,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return new TeacherResource($teacher);
     }
 
     /**
@@ -47,9 +54,13 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(StoreTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $teacher->update($request->validated());
+
+        return response()->json([
+            'message' => 'Profesor Actualizado!'
+        ], 200);
     }
 
     /**
@@ -60,6 +71,10 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
