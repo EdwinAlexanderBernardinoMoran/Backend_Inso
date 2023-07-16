@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Resources\V1\Collection\StudentCollection;
+use App\Http\Resources\V1\Resources\StudentResource;
 use App\Models\Student;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -15,7 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        return new StudentCollection(Student::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        //
+        Student::create($request->validated());
+
+        return response()->json([
+            'message' => '¡Alumno Creado Exitosamente!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return new StudentResource($student);
     }
 
     /**
@@ -47,9 +53,13 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StoreStudentRequest $request, Student $student)
     {
-        //
+        $student->update($request->validated());
+
+        return response()->json([
+            'message' => 'Alumno Actualizado!'
+        ], 200);
     }
 
     /**
@@ -60,6 +70,10 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return response()->json([
+            'message' => 'Sucess'
+        ], 204);
     }
 }

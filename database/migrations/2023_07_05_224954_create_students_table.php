@@ -103,9 +103,9 @@ return new class extends Migration
             $table->string('ResponsibleNames', 120); // Nombres del Responsable
             $table->string('ResponsibleLastNames', 120); // Apellidos del Responsable
             $table->string('DuiResponsible', 10); // Dui del Responsable
-            $table->tinyInteger('familyStateResponsible'); // Estado Familiar del Responsable
+            $table->char('familyStateResponsible', 1); // Estado Familiar del Responsable
             $table->string('emailResponsible', 200); // Email Responsable
-            $table->string('phoneResponsible', 200); // Telefono o celular Reponsable
+            $table->string('phoneResponsible', 9); // Telefono o celular Reponsable
 
             // Llave Foranea a Zona del Responsable.
             $table->unsignedBigInteger('zoneReponsible_id');
