@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRegistrationRequest;
+use App\Http\Resources\V1\Collection\RegistrationCollection;
+use App\Http\Resources\V1\Resources\RegistrationResource;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        //
+        return new RegistrationCollection(Registration::latest()->paginate());
     }
 
     /**
@@ -24,9 +27,13 @@ class RegistrationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRegistrationRequest $request)
     {
-        //
+        Registration::create($request->validated());
+
+        return response()->json([
+            'message' => 'Alumno Matriculado Exitosamente !'
+        ], 201);
     }
 
     /**
@@ -37,7 +44,7 @@ class RegistrationController extends Controller
      */
     public function show(Registration $registration)
     {
-        //
+        return new RegistrationResource($registration);
     }
 
     /**
@@ -47,9 +54,13 @@ class RegistrationController extends Controller
      * @param  \App\Models\Registration  $registration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Registration $registration)
+    public function update(StoreRegistrationRequest $request, Registration $registration)
     {
-        //
+        $registration->update($request->validated());
+
+        return response()->json([
+            'message' => 'Matricula Actualizada!'
+        ], 200);
     }
 
     /**
@@ -60,6 +71,10 @@ class RegistrationController extends Controller
      */
     public function destroy(Registration $registration)
     {
-        //
+        $registration->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }

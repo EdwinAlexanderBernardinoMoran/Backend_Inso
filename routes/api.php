@@ -43,7 +43,7 @@ Route::apiResource('v1/attendance', AttendanceController::class);
 // Route::apiResource('v1/municipality', MunicipalityController::class);
 // Route::apiResource('v1/nationality', NationalityController::class);
 // Route::apiResource('v1/position', PositionController::class);
-Route::apiResource('v1/registration', RegistrationController::class);
+// Route::apiResource('v1/registration', RegistrationController::class);
 // Route::apiResource('v1/school_center', SchoolCenterController::class);
 // Route::apiResource('v1/section', SectionController::class);
 // Route::apiResource('v1/specialty', SpecialtyController::class);

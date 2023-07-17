@@ -14,6 +14,17 @@ class RegistrationResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'students_id' => $this->students_id,
+            'specialties_id' => $this->specialties_id,
+            'section_id' => $this->section_id,
+            'sections' => $this->sections,
+            'anio' => $this->anio,
+            'state' => $this->state,
+            'egresado' => $this->egresado,
+            'status' => $this->status,
+            'created_at' =>$this->published_at
+        ];
     }
 }
