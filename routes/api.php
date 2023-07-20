@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::apiResource('v1/attendance', AttendanceController::class);
+// Route::apiResource('v1/attendance', AttendanceController::class);
 // Route::apiResource('v1/canton', CantonController::class);
 // Route::apiResource('v1/career', CareerController::class);
 // Route::apiResource('v1/category', CategoryController::class);

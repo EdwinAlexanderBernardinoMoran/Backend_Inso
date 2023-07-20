@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAttendanceRequest;
+use App\Http\Resources\V1\Collection\AttendanceCollection;
+use App\Http\Resources\V1\Resources\AttendanceResource;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        return new AttendanceCollection(Attendance::latest()->paginate());
     }
 
     /**
@@ -24,9 +27,13 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAttendanceRequest $request)
     {
-        //
+        Attendance::create($request->validated());
+
+        return response()->json([
+            'message' => 'Asistencia Creada'
+        ], 201);
     }
 
     /**
@@ -37,7 +44,7 @@ class AttendanceController extends Controller
      */
     public function show(Attendance $attendance)
     {
-        //
+        return new AttendanceResource($attendance);
     }
 
     /**
@@ -47,9 +54,13 @@ class AttendanceController extends Controller
      * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attendance $attendance)
+    public function update(StoreAttendanceRequest $request, Attendance $attendance)
     {
-        //
+        $attendance->update($request->validated());
+
+        return response()->json([
+            'message' => 'Asistencia Actualizada!'
+        ], 200);
     }
 
     /**
@@ -60,6 +71,10 @@ class AttendanceController extends Controller
      */
     public function destroy(Attendance $attendance)
     {
-        //
+        $attendance->delete();
+
+        return response()->json([
+            'message' => 'Success'
+        ], 204);
     }
 }
