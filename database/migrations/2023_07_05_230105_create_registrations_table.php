@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
 
             // Llave Foranea a Alummnos (Matricula).
-            $table->unsignedBigInteger('students_id');
-            $table->foreign('students_id')->references('id')->on('students');
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students');
 
             // Llave Foranea a Especialidad (Matricula).
-            $table->unsignedBigInteger('specialties_id');
-            $table->foreign('specialties_id')->references('id')->on('specialties');
+            $table->unsignedBigInteger('specialty_id');
+            $table->foreign('specialty_id')->references('id')->on('specialties');
 
             // Llave Foranea a Seccion (Matricula).
             $table->unsignedBigInteger('section_id');
@@ -30,7 +30,11 @@ return new class extends Migration
 
             $table->integer('sections');
             $table->integer('anio');
-            $table->tinyInteger('state'); // Estado
+
+            // Estados de la matricula
+            $table->unsignedBigInteger('registration_status_id');
+            $table->foreign('registration_status_id')->references('id')->on('registration_status');
+
             $table->tinyInteger('egresado'); // Egresado
             $table->tinyInteger('status'); // Habilitado
 
