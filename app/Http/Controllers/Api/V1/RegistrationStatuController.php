@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRegistrationStatusRequest;
+use App\Http\Resources\V1\Collection\RegistrationStatuCollection;
+use App\Http\Resources\V1\Resources\RegistrationStatuResource;
 use App\Models\RegistrationStatu;
-use Illuminate\Http\Request;
 
 class RegistrationStatuController extends Controller
 {
@@ -15,7 +17,7 @@ class RegistrationStatuController extends Controller
      */
     public function index()
     {
-        //
+        return new RegistrationStatuCollection(RegistrationStatu::latest()->paginate());
     }
 
     /**
@@ -24,9 +26,13 @@ class RegistrationStatuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRegistrationStatusRequest $request)
     {
-        //
+        RegistrationStatu::create($request->validated());
+
+        return response()->json([
+            'message' => 'Estado de Matricula Creado!'
+        ], 201);
     }
 
     /**
@@ -37,7 +43,7 @@ class RegistrationStatuController extends Controller
      */
     public function show(RegistrationStatu $registrationStatu)
     {
-        //
+        return new RegistrationStatuResource($registrationStatu);
     }
 
     /**
@@ -47,9 +53,13 @@ class RegistrationStatuController extends Controller
      * @param  \App\Models\RegistrationStatu  $registrationStatu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RegistrationStatu $registrationStatu)
+    public function update(StoreRegistrationStatusRequest $request, RegistrationStatu $registrationStatu)
     {
-        //
+        $registrationStatu->update($request->validated());
+
+        return response()->json([
+            'message' => 'Estado de Matricula Actualizado!'
+        ], 200);
     }
 
     /**

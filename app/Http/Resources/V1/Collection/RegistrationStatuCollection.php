@@ -2,10 +2,12 @@
 
 namespace App\Http\Resources\V1\Collection;
 
+use App\Http\Resources\V1\Resources\RegistrationStatuResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RegistrationStatuCollection extends ResourceCollection
 {
+    public $collects =  RegistrationStatuResource::class;
     /**
      * Transform the resource collection into an array.
      *

@@ -17,7 +17,6 @@ use App\Http\Controllers\Api\V1\SpecialtyController;
 use App\Http\Controllers\Api\V1\StudentController;
 use App\Http\Controllers\Api\V1\TeacherController;
 use App\Http\Controllers\Api\V1\ZoneController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,4 +50,6 @@ Route::apiResource('v1/specialty', SpecialtyController::class);
 Route::apiResource('v1/student', StudentController::class);
 Route::apiResource('v1/teacher', TeacherController::class);
 Route::apiResource('v1/zone', ZoneController::class);
-Route::apiResource('v1/registrationstatus', RegistrationStatuController::class);
+Route::apiResource('v1/registration_statu', RegistrationStatuController::class);
+
+// Cuando da error en la Url es de modificar las rutas y debe de tener el nombre de la tabla
