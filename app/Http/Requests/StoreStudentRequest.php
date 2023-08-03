@@ -48,7 +48,7 @@ class StoreStudentRequest extends FormRequest
             'disability' => ['required', 'max:250'],
             'email' => ['required', 'email'],
             'telephone' => ['required'],
-            'zona_id' => ['required'],
+            'zone_id' => ['required'],
             'departmentResidence_id' => ['required'],
             'municipalityResidence_id' => ['required'],
             'cantonResidence_id' => ['required'],
@@ -96,7 +96,7 @@ class StoreStudentRequest extends FormRequest
             'photos' => ['required'],
             'RecordNotes' => ['required'],
             'residentCard' => ['required'],
-            'teacherRevision_id' => ['required']
+            'teacher_id' => ['required']
         ];
     }
 }
@@ -128,7 +128,7 @@ class StoreStudentRequest extends FormRequest
     "disability": "Ninguna",
     "email": "edwinalexanderbernardinomoran@gmail.com",
     "telephone": "6065-6575",
-    "zona_id": 1,
+    "zone_id": 1,
     "departmentResidence_id": 1,
     "municipalityResidence_id": 2,
     "cantonResidence_id": 1,
@@ -176,7 +176,7 @@ class StoreStudentRequest extends FormRequest
     "photos": 1,
     "RecordNotes": 1,
     "residentCard": 1,
-    "teacherRevision_id": 1
+    "teacher_id": 1
 }
 
 */

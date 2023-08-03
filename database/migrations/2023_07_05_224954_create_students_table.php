@@ -61,8 +61,8 @@ return new class extends Migration
             $table->string('telephone', 9);
 
             // Llave Foranea a Zonas.
-            $table->unsignedBigInteger('zona_id');
-            $table->foreign('zona_id')->references('id')->on('zones');
+            $table->unsignedBigInteger('zone_id');
+            $table->foreign('zone_id')->references('id')->on('zones');
 
             // Llave Foranea a Departamento de Residencia.
             $table->unsignedBigInteger('departmentResidence_id');
@@ -110,7 +110,6 @@ return new class extends Migration
             // Llave Foranea a Zona del Responsable.
             $table->unsignedBigInteger('zoneReponsible_id');
             $table->foreign('zoneReponsible_id')->references('id')->on('zones');
-            $table->timestamps();
 
             // Llave Foranea a Departamento del Responsable.
             $table->unsignedBigInteger('departmentReponsible_id');
@@ -142,8 +141,10 @@ return new class extends Migration
             $table->tinyInteger('residentCard'); // Constancia de Notas
 
             // Llave Foranea a Profesores.
-            $table->unsignedBigInteger('teacherRevision_id');
-            $table->foreign('teacherRevision_id')->references('id')->on('teachers');
+            $table->unsignedBigInteger('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->timestamps();
+
         });
     }
 

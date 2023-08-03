@@ -40,7 +40,7 @@ class StudentResource extends JsonResource
             'disability' => $this->disability,
             'email' => $this->email,
             'telephone' => $this->telephone,
-            'zona_id' => $this->zona_id, // edit
+            'zone_id' => $this->zone_id, // edit
             'departmentResidence_id' => $this->departmentResidence_id, // edit
             'municipalityResidence_id' => $this->municipalityResidence_id, // edit
             'cantonResidence_id' => $this->cantonResidence_id, // edit
@@ -88,7 +88,7 @@ class StudentResource extends JsonResource
             'photos' => $this->photos,
             'RecordNotes' => $this->RecordNotes,
             'residentCard' => $this->residentCard,
-            'teacherRevision_id' => $this->teacherRevision_id,
+            'teacher_id' => $this->teacher_id,
             'created_at' => $this->published_at
         ];
     }
