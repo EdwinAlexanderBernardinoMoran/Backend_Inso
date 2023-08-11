@@ -29,11 +29,20 @@ class RegistrationController extends Controller
      */
     public function store(StoreRegistrationRequest $request)
     {
-        Registration::create($request->validated());
 
-        return response()->json([
-            'message' => 'Alumno Matriculado Exitosamente !'
-        ], 201);
+        try {
+            Registration::create($request->validated());
+
+            return response()->json([
+                'message' => 'Alumno Matriculado Exitosamente !'
+            ], 201);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 400);
+        }
+
     }
 
     /**

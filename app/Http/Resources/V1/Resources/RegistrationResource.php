@@ -16,12 +16,13 @@ class RegistrationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'students_id' => $this->students_id,
-            'specialties_id' => $this->specialties_id,
+            'student_id' => $this->student_id,
+            'specialty_id' => $this->specialty_id,
             'section_id' => $this->section_id,
             'sections' => $this->sections,
             'anio' => $this->anio,
-            'state' => $this->state,
+            // 'state' => $this->state,
+            'registration_status_id' => $this->registration_status_id,
             'egresado' => $this->egresado,
             'status' => $this->status,
             'created_at' =>$this->published_at

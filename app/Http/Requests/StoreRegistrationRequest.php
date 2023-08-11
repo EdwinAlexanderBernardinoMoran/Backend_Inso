@@ -24,12 +24,12 @@ class StoreRegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'students_id' => ['required'],
-            'specialties_id' => ['required'],
+            'student_id' => ['required'],
+            'specialty_id' => ['required'],
             'section_id' => ['required'],
             'sections' => ['required'],
             'anio' => ['required'],
-            'state' => ['required'],
+            'registration_status_id' => ['required'],
             'egresado' => [],
             'status' => ['required']
         ];
