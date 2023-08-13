@@ -58,7 +58,7 @@ class RegistrationStatu extends Model
 
     Graduado con Honor: Estado especial para los alumnos que han destacado académicamente y se han graduado con méritos adicionales.
 
-    Registros de Estados e matriculas
+    Registros de Estados de matriculas
 
     * Retirado
     * Activo
