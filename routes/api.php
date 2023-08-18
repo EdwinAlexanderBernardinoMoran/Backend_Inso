@@ -53,3 +53,5 @@ Route::apiResource('v1/zone', ZoneController::class);
 Route::apiResource('v1/registration_statu', RegistrationStatuController::class);
 
 // Cuando da error en la Url es de modificar las rutas y debe de tener el nombre de la tabla
+
+Route::get('v1/pdf/student/{student}', [StudentController::class, 'generatePdf'])->name('student.pdf');

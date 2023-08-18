@@ -19,7 +19,7 @@ class StudentResource extends JsonResource
             'names' => $this->names,
             'lastnames' => $this->lastnames,
             'dateBirth' => $this->dateBirth,
-            'nacionality_id' => $this->nacionality_id, // edit
+            'nacionality_id' => $this->nationality->name, // edit
             'departmentBirth_id' => $this->departmentBirth_id, // edit
             'municipalityBirth_id' => $this->municipalityBirth_id, // edit
             'yearStudy' => $this->yearStudy,

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Resources\V1\Collection\StudentCollection;
+use App\Http\Resources\V1\Resources\GeneratePdfStudentResources;
 use App\Http\Resources\V1\Resources\StudentResource;
 use App\Models\Student;
+use FPDF;
 
 class StudentController extends Controller
 {
@@ -75,5 +77,9 @@ class StudentController extends Controller
         return response()->json([
             'message' => 'Sucess'
         ], 204);
+    }
+
+    public function generatePdf(Student $student){
+        return new GeneratePdfStudentResources($student);
     }
 }
