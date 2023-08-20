@@ -7,6 +7,8 @@ use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Resources\V1\Collection\AttendanceCollection;
 use App\Http\Resources\V1\Resources\AttendanceResource;
 use App\Models\Attendance;
+use App\Models\Registration;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -29,11 +31,32 @@ class AttendanceController extends Controller
      */
     public function store(StoreAttendanceRequest $request)
     {
-        Attendance::create($request->validated());
+        $nie = $request->input('nie');
+        $student = Student::where('nie', $nie)->first();
 
-        return response()->json([
-            'message' => 'Asistencia Creada'
-        ], 201);
+        if ($student) {
+            $registration = Registration::where('student_id', $student->id)->where('registration_status_id', '=', '2')->first();
+
+            if ($registration) {
+                $attendance = new Attendance();
+                $attendance->student_id = $student->id;
+                $attendance->datenow = $request->datenow;
+                $attendance->timenow = $request->timenow;
+                $attendance->save();
+
+                return response()->json([
+                    'message' => 'Asistencia Creada!'
+                ], 201);
+            } else {
+                return response()->json([
+                    'message' => 'Alumno no Matriculado!']
+                , 400);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Alumno no Encontrado!'
+            ], 404);
+        }
     }
 
     /**

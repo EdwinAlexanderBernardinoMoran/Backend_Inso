@@ -24,9 +24,9 @@ class StoreAttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_id' => ['required'],
-            'date' => ['required', 'date'],
-            'time' => ['required']
+            'nie' => ['required'],
+            'datenow' => ['required', 'date'],
+            'timenow' => ['required']
         ];
     }
 }

@@ -12,4 +12,9 @@ class Attendance extends Model
     public function getPublishedAtAttribute(){
         return $this->created_at->format('d/m/Y');
     }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

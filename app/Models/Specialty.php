@@ -12,4 +12,17 @@ class Specialty extends Model
     public function getPublishedAtAttribute(){
         return $this->created_at->format('d/m/Y');
     }
+
+    // RELACION UNO A MUCHOS
+    // **********************************
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'incomeSpecialty_id');
+    }
 }

@@ -12,4 +12,10 @@ class Career extends Model
     public function getPublishedAtAttribute(){
         return $this->created_at->format('d/m/Y');
     }
+
+    // RELACION UNO A MUCHOS
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
+    }
 }

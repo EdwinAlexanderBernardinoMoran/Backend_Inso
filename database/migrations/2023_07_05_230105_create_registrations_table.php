@@ -32,8 +32,8 @@ return new class extends Migration
             $table->integer('anio');
 
             // Estados de la matricula
-            $table->unsignedBigInteger('registration_status_id');
-            $table->foreign('registration_status_id')->references('id')->on('registration_status');
+            $table->unsignedBigInteger('registration_statu_id');
+            $table->foreign('registration_statu_id')->references('id')->on('registration_status');
 
             $table->tinyInteger('egresado'); // Egresado
             $table->tinyInteger('status'); // Habilitado

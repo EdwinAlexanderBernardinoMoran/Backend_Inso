@@ -13,11 +13,8 @@ class Student extends Model
         return $this->created_at->format('d/m/Y');
     }
 
-    public function registrations()
-    {
-        return $this->hasMany(Registration::class);
-    }
-
+    // RELACION UNO A MUCHOS (INVERSA)
+    // **********************************
     public function nationality(){
         return $this->belongsTo(Nationality::class, 'nacionality_id');
     }
@@ -32,17 +29,17 @@ class Student extends Model
         return $this->belongsTo(Municipality::class, 'municipalityBirth_id');
     }
 
-    public function specialties()
+    public function specialty()
     {
         return $this->belongsTo(Specialty::class, 'incomeSpecialty_id');
     }
 
-    public function shoolCenters()
+    public function shoolCenter()
     {
-        return $this->belongsTo(SchoolCenter::class, 'providencisShoolCenters_id');
+        return $this->belongsTo(SchoolCenter::class);
     }
 
-    public function zones()
+    public function zone()
     {
         return $this->belongsTo(Zone::class, 'zone_id');
     }
@@ -97,4 +94,16 @@ class Student extends Model
         return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
+    // RELACION UNO A MUCHOS
+    // **********************************
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class, 'student_id');
+    }
 }

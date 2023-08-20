@@ -22,8 +22,8 @@ return new class extends Migration
             $table->date('dateBirth');
 
             // LLave Foranea a nacionalidades
-            $table->unsignedBigInteger('nacionality_id');
-            $table->foreign('nacionality_id')->references('id')->on('nationalities');
+            $table->unsignedBigInteger('nationality_id');
+            $table->foreign('nationality_id')->references('id')->on('nationalities');
 
             // LLave Foranea a Departamento De Nacimiento
             $table->unsignedBigInteger('departmentBirth_id');
@@ -49,8 +49,8 @@ return new class extends Migration
             $table->char('repeatSection', 2); // Repite Grado
 
             // LLave Foranea a Centros Escolares
-            $table->unsignedBigInteger('providencisShoolCenters_id');
-            $table->foreign('providencisShoolCenters_id')->references('id')->on('school_centers');
+            $table->unsignedBigInteger('school_center_id');
+            $table->foreign('school_center_id')->references('id')->on('school_centers');
 
             $table->integer('previousYear'); // año anterior
             $table->string('bloodType', 20); // Tipo de sangre

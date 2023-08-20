@@ -12,4 +12,9 @@ class Position extends Model
     public function getPublishedAtAttribute(){
         return $this->created_at->format('d/m/Y');
     }
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
+    }
 }
