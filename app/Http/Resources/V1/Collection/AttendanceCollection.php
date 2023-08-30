@@ -2,12 +2,15 @@
 
 namespace App\Http\Resources\V1\Collection;
 
-use App\Http\Resources\V1\Resources\AttendanceResource;
+// use App\Http\Resources\V1\Resources\AttendanceResource;
+
+use App\Http\Resources\V1\Resources\Relationships\AttendanceRelationshipsResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AttendanceCollection extends ResourceCollection
 {
-    public $collects = AttendanceResource::class;
+    // public $collects = AttendanceResource::class;
+    public $collects = AttendanceRelationshipsResource::class;
     /**
      * Transform the resource collection into an array.
      *
