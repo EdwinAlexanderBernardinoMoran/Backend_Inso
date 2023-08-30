@@ -21,7 +21,6 @@ class RegistrationResource extends JsonResource
             'section_id' => $this->section_id,
             'sections' => $this->sections,
             'anio' => $this->anio,
-            // 'state' => $this->state,
             'registration_status_id' => $this->registration_status_id,
             'egresado' => $this->egresado,
             'status' => $this->status,

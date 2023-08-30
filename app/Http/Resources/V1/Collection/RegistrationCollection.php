@@ -2,12 +2,15 @@
 
 namespace App\Http\Resources\V1\Collection;
 
-use App\Http\Resources\V1\Resources\RegistrationResource;
+// use App\Http\Resources\V1\Resources\RegistrationResource;
+
+use App\Http\Resources\V1\Resources\Relationships\RegistrationRelationshipsResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RegistrationCollection extends ResourceCollection
 {
-    public $collects = RegistrationResource::class;
+    // public $collects = RegistrationResource::class;
+    public $collects = RegistrationRelationshipsResource::class;
     /**
      * Transform the resource collection into an array.
      *
