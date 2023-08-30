@@ -36,7 +36,7 @@ class Student extends Model
 
     public function shoolCenter()
     {
-        return $this->belongsTo(SchoolCenter::class);
+        return $this->belongsTo(SchoolCenter::class, 'providencisShoolCenters_id');
     }
 
     public function zone()
