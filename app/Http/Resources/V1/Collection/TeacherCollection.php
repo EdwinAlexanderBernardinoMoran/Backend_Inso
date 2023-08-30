@@ -2,12 +2,15 @@
 
 namespace App\Http\Resources\V1\Collection;
 
-use App\Http\Resources\V1\Resources\TeacherResource;
+// use App\Http\Resources\V1\Resources\TeacherResource;
+
+use App\Http\Resources\V1\Resources\Relationships\TeacherRelationshipsResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TeacherCollection extends ResourceCollection
 {
-    public $collects = TeacherResource::class;
+    // public $collects = TeacherResource::class;
+    public $collects = TeacherRelationshipsResource::class;
 
     /**
      * Transform the resource collection into an array.
