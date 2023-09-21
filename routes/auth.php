@@ -8,8 +8,36 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+/*
+
+
+Route::group([
+'middleware' => 'api',
+'prefix' => 'auth'
+], function ($router) {
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('refresh', 'AuthController@refresh');
+Route::post('me', 'AuthController@me');
+});
+
+*/
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+
+    Route::post('/register', [RegisteredUserController::class, 'store'])
+                ->name('register');
+
+    // Route::post('login', 'AuthController@login');
+    // Route::post('logout', 'AuthController@logout');
+    // Route::post('refresh', 'AuthController@refresh');
+    // Route::post('me', 'AuthController@me');
+});
+
 Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest')
                 ->name('register');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
