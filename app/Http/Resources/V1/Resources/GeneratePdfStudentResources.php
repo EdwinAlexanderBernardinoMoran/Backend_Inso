@@ -115,14 +115,14 @@ class GeneratePdfStudentResources extends JsonResource
         $pdf->SetFont("Arial", "B", 11);
         $pdf->Cell(55, 6, "Especialidad", 1, 0, "C");
         $pdf->SetFont("Arial", "", 11);
-        $pdf->Cell(135, 6, utf8_decode($this->specialties->name), 1, 1, "C");
+        $pdf->Cell(135, 6, utf8_decode($this->specialty->name), 1, 1, "C");
 
         // Fila 7
         // Centro de procedencia
         $pdf->SetFont("Arial", "B", 11);
         $pdf->Cell(50, 6, "Centro de procedencia", 1, 0, "C");
         $pdf->SetFont("Arial", "", 11);
-        $pdf->Cell(140, 6, utf8_decode($this->shoolCenters->name), 1, 1, "C");
+        $pdf->Cell(140, 6, utf8_decode($this->shoolCenter->name), 1, 1, "C");
 
         // Estudio estudio_parvularia
         $pdf->SetFont("Arial", "B", 11);
@@ -224,7 +224,7 @@ class GeneratePdfStudentResources extends JsonResource
         $pdf->SetFont("Arial", "B", 11);
         $pdf->Cell(30, 6, "Zona", 1, 0, "C");
         $pdf->SetFont("Arial", "", 11);
-        $pdf->Cell(30, 6, utf8_decode($this->zones->name), 1, 1, "C");
+        $pdf->Cell(30, 6, utf8_decode($this->zone->name), 1, 1, "C");
 
         // Fila 3
         // departamento

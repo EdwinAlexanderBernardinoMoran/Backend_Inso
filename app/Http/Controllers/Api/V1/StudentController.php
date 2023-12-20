@@ -8,7 +8,7 @@ use App\Http\Resources\V1\Collection\StudentCollection;
 use App\Http\Resources\V1\Resources\GeneratePdfStudentResources;
 use App\Http\Resources\V1\Resources\StudentResource;
 use App\Models\Student;
-use FPDF;
+use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
 {
@@ -19,7 +19,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return new StudentCollection(Student::latest()->paginate());
+        $students = Student::with('nationality', 'departmentBirth', 'municipalityBirth', 'specialty', 'shoolCenter', 'zone', 'departmentResidence', 'municipalityResident', 'cantonResidence', 'hamletResidence', 'zoneReponsible', 'departmentReponsible', 'municipalityReponsible', 'cantonReponsible', 'hamletReponsible', 'teacher', 'attendances', 'registrations')->latest()->paginate();
+        return new StudentCollection($students);
     }
 
     /**
@@ -34,7 +35,7 @@ class StudentController extends Controller
 
         return response()->json([
             'message' => '¡Alumno Creado Exitosamente!'
-        ], 201);
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -75,8 +76,8 @@ class StudentController extends Controller
         $student->delete();
 
         return response()->json([
-            'message' => 'Sucess'
-        ], 204);
+            'message' => 'Alumno Eliminado'
+        ], Response::HTTP_NO_CONTENT);
     }
 
     public function generatePdf(Student $student){
