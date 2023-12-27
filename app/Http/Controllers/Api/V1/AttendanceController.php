@@ -9,7 +9,7 @@ use App\Http\Resources\V1\Resources\AttendanceResource;
 use App\Models\Attendance;
 use App\Models\Registration;
 use App\Models\Student;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AttendanceController extends Controller
 {
@@ -20,7 +20,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return new AttendanceCollection(Attendance::latest()->paginate());
+        $attendances = Attendance::with('student')->latest()->paginate();
+        return new AttendanceCollection($attendances);
     }
 
     /**
@@ -46,16 +47,16 @@ class AttendanceController extends Controller
 
                 return response()->json([
                     'message' => 'Asistencia Creada!'
-                ], 201);
+                ], Response::HTTP_CREATED);
             } else {
                 return response()->json([
                     'message' => 'Alumno no Matriculado!']
-                , 400);
+                , Response::HTTP_BAD_REQUEST);
             }
         } else {
             return response()->json([
                 'message' => 'Alumno no Encontrado!'
-            ], 404);
+            ], Response::HTTP_NO_CONTENT);
         }
     }
 
@@ -83,7 +84,7 @@ class AttendanceController extends Controller
 
         return response()->json([
             'message' => 'Asistencia Actualizada!'
-        ], 200);
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -98,6 +99,6 @@ class AttendanceController extends Controller
 
         return response()->json([
             'message' => 'Success'
-        ], 204);
+        ], Response::HTTP_NO_CONTENT);
     }
 }

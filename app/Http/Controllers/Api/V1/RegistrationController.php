@@ -7,7 +7,8 @@ use App\Http\Requests\StoreRegistrationRequest;
 use App\Http\Resources\V1\Collection\RegistrationCollection;
 use App\Http\Resources\V1\Resources\RegistrationResource;
 use App\Models\Registration;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class RegistrationController extends Controller
 {
@@ -18,7 +19,8 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        return new RegistrationCollection(Registration::latest()->paginate());
+        $registrations = Registration::with('student', 'specialty', 'section', 'registrationstatus')->latest()->paginate();
+        return new RegistrationCollection($registrations);
     }
 
     /**
@@ -35,12 +37,12 @@ class RegistrationController extends Controller
 
             return response()->json([
                 'message' => 'Alumno Matriculado Exitosamente !'
-            ], 201);
+            ], Response::HTTP_CREATED);
 
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
-            ], 400);
+            ], Response::HTTP_BAD_REQUEST);
         }
 
     }
@@ -69,7 +71,7 @@ class RegistrationController extends Controller
 
         return response()->json([
             'message' => 'Matricula Actualizada!'
-        ], 200);
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -84,6 +86,6 @@ class RegistrationController extends Controller
 
         return response()->json([
             'message' => 'Success'
-        ], 204);
+        ], Response::HTTP_NO_CONTENT);
     }
 }

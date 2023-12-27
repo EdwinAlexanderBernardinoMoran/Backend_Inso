@@ -7,7 +7,7 @@ use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Resources\V1\Collection\TeacherCollection;
 use App\Http\Resources\V1\Resources\TeacherResource;
 use App\Models\Teacher;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TeacherController extends Controller
 {
@@ -18,7 +18,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return new TeacherCollection(Teacher::latest()->paginate());
+        $teachers = Teacher::with('career', 'category', 'position')->latest()->paginate();
+        return new TeacherCollection($teachers);
     }
 
     /**
@@ -33,7 +34,7 @@ class TeacherController extends Controller
 
         return response()->json([
             'message' => 'Profesor Creado Exitosamente!'
-        ], 201);
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -60,7 +61,7 @@ class TeacherController extends Controller
 
         return response()->json([
             'message' => 'Profesor Actualizado!'
-        ], 200);
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -75,6 +76,6 @@ class TeacherController extends Controller
 
         return response()->json([
             'message' => 'Success'
-        ], 204);
+        ], Response::HTTP_NO_CONTENT);
     }
 }
