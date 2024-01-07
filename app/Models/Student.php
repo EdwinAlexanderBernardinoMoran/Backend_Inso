@@ -16,7 +16,7 @@ class Student extends Model
     // RELACION UNO A MUCHOS (INVERSA)
     // **********************************
     public function nationality(){
-        return $this->belongsTo(Nationality::class, 'nacionality_id');
+        return $this->belongsTo(Nationality::class, 'nationality_id');
     }
 
     public function departmentBirth()
@@ -36,7 +36,7 @@ class Student extends Model
 
     public function shoolCenter()
     {
-        return $this->belongsTo(SchoolCenter::class, 'providencisShoolCenters_id');
+        return $this->belongsTo(SchoolCenter::class, 'school_center_id');
     }
 
     public function zone()

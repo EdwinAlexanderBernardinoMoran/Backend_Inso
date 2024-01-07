@@ -100,7 +100,7 @@ class StudentRelationshipsResource extends JsonResource
             'names' => $this->names,
             'lastnames' => $this->lastnames,
             'dateBirth' => $this->dateBirth,
-            'nacionality' => $this->nationality->name, // edit
+            'nationality' => $this->nationality->name, // edit
             'departmentBirth' => $this->departmentBirth->name, // edit
             'municipalityBirth' => $this->municipalityBirth->name, // edit
             'yearStudy' => $this->yearStudy,
