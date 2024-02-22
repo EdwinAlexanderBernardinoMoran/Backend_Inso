@@ -19,7 +19,7 @@ class StudentResource extends JsonResource
             'names' => $this->names,
             'lastnames' => $this->lastnames,
             'dateBirth' => $this->dateBirth,
-            'nacionality_id' => $this->nationality->name, // edit
+            'nationality_id' => $this->nationality_id, // edit
             'departmentBirth_id' => $this->departmentBirth_id, // edit
             'municipalityBirth_id' => $this->municipalityBirth_id, // edit
             'yearStudy' => $this->yearStudy,
@@ -32,7 +32,7 @@ class StudentResource extends JsonResource
             'incomeSpecialty_id' => $this->incomeSpecialty_id,
             'parvularianStudy' => $this->parvularianStudy,
             'repeatSection' => $this->repeatSection,
-            'providencisShoolCenters_id' => $this->providencisShoolCenters_id, // edit
+            'school_center_id' => $this->school_center_id, // edit
             'previousYear' => $this->previousYear,
             'bloodType' => $this->bloodType,
             'sexo' => $this->sexo,
